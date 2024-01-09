@@ -64,7 +64,6 @@ class IB(ContinualModel):
             self.svds = []
  
             masks = self.net.get_masks(hard_mask=True, threshold=0.0)
-            self.print_usage(masks)
 
     def observe(self, inputs, labels, not_aug_inputs, t):
         self.opt.zero_grad()

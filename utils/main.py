@@ -75,8 +75,6 @@ def parse_args():
     return args
 
 def main(args=None):
-    os.environ['JOBLIB_TEMP_FOLDER'] = '/home/chencheng/Code/mammoth/Tempdir'
-
     if args is None:
         args = parse_args()    
 

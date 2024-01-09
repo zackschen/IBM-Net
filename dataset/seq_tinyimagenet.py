@@ -98,7 +98,7 @@ class SequentialTinyImagenet(ContinualDataset):
     SETTING = 'task-il'
     N_CLASSES_PER_TASK = 20
     N_TASKS = 10
-    DATA_PATH = ""
+    DATA_PATH = "" ## Data path to be set
     TRANSFORM = transforms.Compose(
             [transforms.RandomCrop(64, padding=4),
              transforms.RandomHorizontalFlip(),
@@ -115,14 +115,10 @@ class SequentialTinyImagenet(ContinualDataset):
         train_dataset = MyTinyImagenet(self.DATA_PATH, train= True,transform=transform)
         train_dataset.data = train_dataset.samples
 
-        # train_dataset = MyTinyImagenet(base_path() + 'TINYIMG',
-        #                          train=True, download=True, transform=transform)
         if self.args.validation:
             train_dataset, test_dataset = get_train_val(train_dataset,
                                                     test_transform, self.NAME)
         else:
-            # test_dataset = TinyImagenet(base_path() + 'TINYIMG',
-            #             train=False, download=True, transform=test_transform)
 
             test_dataset = TinyImagenet(self.DATA_PATH, train= False,transform=test_transform)
             test_dataset.data = train_dataset.samples

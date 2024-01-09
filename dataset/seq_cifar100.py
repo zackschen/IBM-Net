@@ -64,6 +64,7 @@ class SequentialCIFAR100(ContinualDataset):
     SETTING = 'task-il'
     N_CLASSES_PER_TASK = 10
     N_TASKS = 10
+    DATA_PATH = "" ## Data path to be set
     TRANSFORM = transforms.Compose(
             [transforms.RandomCrop(32, padding=4),
              transforms.RandomHorizontalFlip(),
@@ -72,7 +73,7 @@ class SequentialCIFAR100(ContinualDataset):
                                   (0.2675, 0.2565, 0.2761))])
 
     def get_examples_number(self):
-        train_dataset = MyCIFAR100(data_base_path() + 'CIFAR100', train=True,
+        train_dataset = MyCIFAR100(self.DATA_PATH, train=True,
                                   download=True)
         return len(train_dataset.data)
 
@@ -82,13 +83,13 @@ class SequentialCIFAR100(ContinualDataset):
         test_transform = transforms.Compose(
             [transforms.ToTensor(), self.get_normalization_transform()])
 
-        train_dataset = MyCIFAR100(data_base_path() + 'CIFAR100', train=True,
+        train_dataset = MyCIFAR100(self.DATA_PATH, train=True,
                                   download=True, transform=transform)
         if self.args.validation:
             train_dataset, val_dataset = get_train_val(train_dataset,
                                                     test_transform, self.NAME)
         else:
-            test_dataset = TCIFAR100(data_base_path() + 'CIFAR100',train=False,
+            test_dataset = TCIFAR100(self.DATA_PATH,train=False,
                                    download=True, transform=test_transform)
 
         train, test = store_masked_loaders(train_dataset, test_dataset, self)
