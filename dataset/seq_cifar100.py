@@ -8,7 +8,6 @@ import torchvision.transforms as transforms
 from backbone.ResNet18 import resnet18
 from backbone.Alexnet import AlexNet
 import torch.nn.functional as F
-from utils.conf import data_base_path
 from PIL import Image
 from dataset.utils.validation import get_train_val
 from dataset.utils.continual_dataset import ContinualDataset, store_masked_loaders
