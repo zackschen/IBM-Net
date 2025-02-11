@@ -7,7 +7,6 @@ checkpoints/
 *.pt
 *.pkl
 *.sh
-*.txt
 json/
 out/
 err/
@@ -23,6 +22,8 @@ build/
 develop-eggs/
 dist/
 downloads/
+results/
+logs/
 eggs/
 .eggs/
 lib/
